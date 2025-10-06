@@ -36,7 +36,7 @@ def get_details(service):
     print("✅ Driver launched.")
     data = []
 
-    for page in range(10, 16):
+    for page in range(2, 5):  
         url = f"https://www.yellowpages.com/search?search_terms={service}&geo_location_terms=Georgia&page={page}"
         print(f"Loading page {page}...")
         driver.get(url)
@@ -105,13 +105,13 @@ def get_details(service):
                     "Phone": "",
                     "Email": ""
                 })
-    print(f"Done Scraping page. Saving results...")
-    df = pd.DataFrame(data)
-    df.to_csv(f"{service} for Page {page}_details.csv", index=False)
-    print(f"Saved {len(df)} results to {service} for Page {page}_details.csv")
+        print(f"Done Scraping page. Saving results...")
+        df = pd.DataFrame(data)
+        df.to_csv(f"{service} for Page {page}_details.csv", index=False)
+        print(f"Saved {len(df)} results to {service} for Page {page}_details.csv")
 
     driver.quit()
 
 
 
-get_details("plumbers")
+get_details("Marketing Agencies")
