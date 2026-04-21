@@ -36,7 +36,7 @@ for index, detail in details.head(2).iterrows():
 
     Can I send a 2-minute video showing exactly how we'd do this for you?"""
 
-    attachmets = ['image.jpeg','image (1).jpeg']
+    attachmets = ['image.jpeg','image (2).jpeg']
     try:
         with yg.SMTP(r_email, password) as yag:
             yag.send(
