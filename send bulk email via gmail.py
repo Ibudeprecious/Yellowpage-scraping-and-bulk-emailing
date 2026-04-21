@@ -11,44 +11,39 @@ r_email = os.getenv('EMAIL')
 
 # yag = yg.SMTP(r_email, password)
 
-details = pd.read_csv('Marketing Agencies for Page 4_details.csv')
+details = pd.read_csv('plumber.csv')
 failed_emails = []
 success_emails = []
 
 start_overall = time.time()
-for index, detail in details.head(59).iterrows():
+for index, detail in details.head(2).iterrows():
     start = time.time()
-    name = detail['Business Name']
-    email = detail['Email']
+    name = detail['name']
+    email = detail['email']
+    website = detail['website']
 
-    subject = f"{name}, let us handle your next presentation"
+    subject = f"{name} - Top 3 on Google?"
     content = f"""
     Hi {name},
 
-    Your creatives should be brainstorming the next big campaign, not wrestling with PowerPoint.
+    Noticed {name} currently not showing up in the top 3 on Google, which usually means you’re missing out on a lot of potential customers searching for your service.
 
-    We know how frustrating it is when a great strategy gets bogged down by tedious slide formatting. That's why we're offering to take the worst part of pitching off your hands.
+    We at Google Optimization Agency help local businesses get into the top 3 on Google AND Google Maps within 90 days - guaranteed.
 
-    For just $10 per slide, we’ll handle the design, alignment, and branding, ensuring every deck you send out is sharp, professional, and consistent.
+    Attached is an image that shows you how we helped Golden Thai get into the top 3 on Google and Google Maps in just 60 days.
 
-    The Benefit is Simple: You eliminate the design stress and instantly free up your team to focus on billable client strategy—not slide maintenance.
+    Based on your local competition I'm extremely confident we can do the same for you.
 
-    Let us build your next winning presentation.
+    Can I send a 2-minute video showing exactly how we'd do this for you?"""
 
-    Ready to see how fast we can turn your ideas into a flawless deck?
-
-    Send us your topic on whatsapp: https://wa.me/2349012452831
-    """
-
+    attachmets = ['image.jpeg','image (1).jpeg']
     try:
         with yg.SMTP(r_email, password) as yag:
             yag.send(
                 to=email,
                 subject=subject,
                 contents=content,
-                # headers={
-                #     "List-Unsubscribe": f"<mailto:{r_email}>"
-                # }
+                attachments=attachmets
             )
         timetaken = time.time() - start
         print(f"Email sent to: {name} in {timetaken:.2f} seconds")
